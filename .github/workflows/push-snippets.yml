@@ -1,0 +1,27 @@
+name: Push snippets to docs.openweb.ai
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "01_search_and_chat.py"
+      - "02_webhook_server.py"
+      - "03_space_api.py"
+      - "push_snippets.py"
+      - ".github/workflows/push-snippets.yml"
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Push snippets
+        env:
+          NXDOCS_API_KEY: ${{ secrets.NXDOCS_API_KEY }}
+        run: python3 push_snippets.py
