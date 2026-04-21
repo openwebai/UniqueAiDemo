@@ -2,7 +2,7 @@ name: Push snippets to docs.openweb.ai
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/push-code-snippets-docs-P2vKW]
     paths:
       - "01_search_and_chat.py"
       - "02_webhook_server.py"
